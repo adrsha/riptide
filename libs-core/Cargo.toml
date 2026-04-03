@@ -1,0 +1,10 @@
+[package]
+name = "libs-core"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+arc-swap.workspace = true
+thiserror.workspace = true
+parking_lot.workspace = true
+slotmap.workspace = true

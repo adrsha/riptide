@@ -1,0 +1,15 @@
+[workspace]
+members = [
+    "libs-core",
+    "libs-server",
+    "libs-client",
+    "libs",
+    "libs-defaults"
+]
+resolver = "2"
+
+[workspace.dependencies]
+parking_lot = "0.12.5"
+thiserror = "2.0.18"
+arc-swap = "1.9.0"
+slotmap = "1.1.1"

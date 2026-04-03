@@ -1,0 +1,9 @@
+[package]
+name = "riptide"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+libs-client = { version = "0.1.0", path = "../libs-client" }
+libs-core = { version = "0.1.0", path = "../libs-core" }
+libs-server = { version = "0.1.0", path = "../libs-server" }
