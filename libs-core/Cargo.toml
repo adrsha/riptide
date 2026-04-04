@@ -8,3 +8,4 @@ arc-swap.workspace = true
 thiserror.workspace = true
 parking_lot.workspace = true
 slotmap.workspace = true
+bitcode.workspace = true

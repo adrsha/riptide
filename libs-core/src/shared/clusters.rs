@@ -6,13 +6,31 @@ use crate::{
 pub type RTClusterId = slotmap::DefaultKey;
 
 pub struct RTCluster {
-    root:       RTClusterNode,
-    is_visible: bool
+    pub root:       RTClusterNode,
+    pub is_visible: bool
+}
+
+impl RTCluster {
+    pub fn new() -> Self {
+        Self {
+            root:       RTClusterNode::Branch {
+                direction: RTDirection::Horizontal,
+                children:  Vec::new(),
+                ratio:     0.0
+            },
+            is_visible: true
+        }
+    }
+}
+
+impl Default for RTCluster {
+    fn default() -> Self { Self::new() }
 }
 
 pub enum RTClusterNode {
     Leaf {
-        frame_id: RTFrameId
+        frame_id: RTFrameId,
+        ratio:    f32
     },
     Branch {
         direction: RTDirection,

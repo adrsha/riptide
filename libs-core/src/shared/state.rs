@@ -1,17 +1,17 @@
 use crate::shared::{buffers::RTBufferId, clusters::RTClusterId, frames::RTFrameId};
 
 pub struct RTState {
-    pub active_frame_id:   RTFrameId,
-    pub active_cluster_id: RTClusterId,
-    pub active_buffer_id:  RTBufferId
+    pub active_frame_id:   Option<RTFrameId>,
+    pub active_cluster_id: Option<RTClusterId>,
+    pub active_buffer_id:  Option<RTBufferId>
 }
 
 impl RTState {
     pub fn new() -> Self {
         Self {
-            active_frame_id:   RTFrameId::default(),
-            active_cluster_id: RTClusterId::default(),
-            active_buffer_id:  RTBufferId::default()
+            active_frame_id:   None,
+            active_cluster_id: None,
+            active_buffer_id:  None
         }
     }
 }
