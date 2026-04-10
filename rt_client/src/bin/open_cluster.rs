@@ -1,6 +1,6 @@
 use std::{env, fs};
 
-use libs_core::{
+use rt_core::{
     errors::RTResult,
     types::messages::{RTClusterCommand, RTCommand, RTSignal}
 };

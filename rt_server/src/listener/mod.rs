@@ -2,7 +2,7 @@ pub mod def_fns;
 
 use std::{path::PathBuf, sync::OnceLock};
 
-use libs_core::types::fn_alias::RTAsyncArcFn;
+use rt_core::types::fn_alias::RTAsyncArcFn;
 
 use crate::{
     RTServer,

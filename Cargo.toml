@@ -1,8 +1,8 @@
 [workspace]
 members = [
-    "libs-core",
-    "libs-server",
-    "libs-client",
+    # "rt_core",
+    # "rt_server",
+    # "rt_client",
     "libs",
 ]
 resolver = "2"

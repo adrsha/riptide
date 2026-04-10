@@ -3,7 +3,6 @@ pub mod clusters;
 pub mod frames;
 pub mod state;
 
-use arc_swap::ArcSwap;
 use parking_lot::Mutex;
 use slotmap::SlotMap;
 

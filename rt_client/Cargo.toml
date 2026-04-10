@@ -1,5 +1,5 @@
 [package]
-name = "libs-client"
+name = "rt_client"
 version = "0.1.0"
 edition = "2024"
 
@@ -7,4 +7,4 @@ edition = "2024"
 dirs.workspace = true
 tokio.workspace = true
 bitcode.workspace = true
-libs-core = { version = "0.1.0", path = "../libs-core" }
+rt_core = { version = "0.1.0", path = "../rt_core" }

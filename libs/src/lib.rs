@@ -1,4 +1,3 @@
-pub use libs_core as core;
-pub use libs_server as server;
-pub use libs_client as client;
-pub mod riptide;
+pub use rt_core;
+pub use rt_client;
+pub use rt_server;

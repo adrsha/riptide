@@ -1,6 +1,6 @@
-use std::path::PathBuf;
+use std::{fs, path::PathBuf};
 
-use libs_core::errors::{RTErrors, RTResult};
+use rt_core::errors::{RTErrors, RTResult};
 
 use crate::listener::RTListener;
 
@@ -19,6 +19,8 @@ async fn create_lock_dir(listener: &RTListener) -> RTResult<PathBuf> {
 
     let lock_path = base_dir.join(format!("riptide_{server_id}"));
     println!("Lock Folder path: {lock_path:?}, server_id = {server_id}");
+
+    fs::create_dir_all(&lock_path)?;
 
     if let Err(t) = listener.lock_path.set(lock_path.clone()) {
         Err(RTErrors::AlreadyExists {

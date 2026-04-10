@@ -1,6 +1,6 @@
 use std::{path::PathBuf, pin::Pin, sync::Arc};
 
-use libs_core::{
+use rt_core::{
     errors::{RTErrors, RTResult},
     types::input::{RTInputEvent, RTModifiers, RTMouseButton, RTTag}
 };

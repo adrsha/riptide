@@ -1,6 +1,6 @@
-use std::{net::SocketAddr, path::PathBuf, pin::Pin, sync::Arc};
+use std::{path::PathBuf, pin::Pin, sync::Arc};
 
-use libs_core::{
+use rt_core::{
     errors::{RTErrors, RTResult},
     shared::clusters::RTCluster,
     types::messages::{RTClusterCommand, RTCommand, RTSignal}
@@ -11,7 +11,10 @@ use tokio::{
     net::TcpListener
 };
 
-use crate::{RTServer, listener::def_fns::{create_lock_dir, shutdown_signals}};
+use crate::{
+    RTServer,
+    listener::def_fns::{create_lock_dir, shutdown_signals}
+};
 
 pub fn tcp_listen_impl<'a>(
     server: Arc<RTServer>
