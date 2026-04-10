@@ -1,21 +1,26 @@
 pub mod def_fns;
 
-use std::path::PathBuf;
+use std::{path::PathBuf, sync::OnceLock};
 
-use libs_core::types::fn_alias::RTAsyncMutRefFn;
+use libs_core::types::fn_alias::RTAsyncArcFn;
 
-use crate::{RTServer, listener::def_fns::tcp_listen_impl};
+use crate::{
+    RTServer,
+    listener::def_fns::{tcp::tcp_listen_impl, unix::unix_listen_impl}
+};
 
 pub struct RTListener {
-    pub lock_path:  PathBuf,
-    pub tcp_listen: RTAsyncMutRefFn<RTServer, ()>
+    pub lock_path:   OnceLock<PathBuf>,
+    pub tcp_listen:  RTAsyncArcFn<RTServer, ()>,
+    pub unix_listen: RTAsyncArcFn<RTServer, ()>
 }
 
 impl RTListener {
     pub fn new() -> Self {
         Self {
-            lock_path:  PathBuf::new(),
-            tcp_listen: tcp_listen_impl
+            lock_path:   OnceLock::new(),
+            tcp_listen:  tcp_listen_impl,
+            unix_listen: unix_listen_impl
         }
     }
 }

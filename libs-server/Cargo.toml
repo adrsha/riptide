@@ -8,5 +8,5 @@ dirs.workspace = true
 tokio.workspace = true
 thiserror.workspace = true
 bitcode.workspace = true
-libs-client = { version = "0.1.0", path = "../libs-client" }
 libs-core = { version = "0.1.0", path = "../libs-core" }
+rkyv = { version = "0.8.15", features = ["std"] }

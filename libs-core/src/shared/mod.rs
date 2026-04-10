@@ -4,6 +4,7 @@ pub mod frames;
 pub mod state;
 
 use arc_swap::ArcSwap;
+use parking_lot::Mutex;
 use slotmap::SlotMap;
 
 use crate::shared::{
@@ -14,19 +15,19 @@ use crate::shared::{
 };
 
 pub struct RTShared {
-    pub clusters: SlotMap<RTClusterId, RTCluster>,
-    pub frames:   SlotMap<RTFrameId, RTFrame>,
-    pub buffers:  SlotMap<RTBufferId, RTBuffer>,
-    pub state:    ArcSwap<RTState>
+    pub clusters: Mutex<SlotMap<RTClusterId, RTCluster>>,
+    pub frames:   Mutex<SlotMap<RTFrameId, RTFrame>>,
+    pub buffers:  Mutex<SlotMap<RTBufferId, RTBuffer>>,
+    pub state:    Mutex<RTState>
 }
 
 impl RTShared {
     pub fn new() -> Self {
         Self {
-            clusters: SlotMap::new(),
-            frames:   SlotMap::new(),
-            buffers:  SlotMap::new(),
-            state:    ArcSwap::from_pointee(RTState::new())
+            clusters: Mutex::new(SlotMap::new()),
+            frames:   Mutex::new(SlotMap::new()),
+            buffers:  Mutex::new(SlotMap::new()),
+            state:    Mutex::new(RTState::new())
         }
     }
 }

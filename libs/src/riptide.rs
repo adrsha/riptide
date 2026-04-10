@@ -1,22 +1,17 @@
-use std::{fs, pin::Pin};
+use std::{fs, pin::Pin, sync::Arc};
 
-use libs_client::RTClient;
-use libs_core::{errors::RTResult, shared::RTShared, types::fn_alias::RTAsyncMutRefFn};
+use libs_core::{errors::RTResult, types::fn_alias::{RTAsyncMutRefFn, RTAsyncRefFn}};
 use libs_server::RTServer;
 
 pub struct Riptide {
-    pub client: RTClient,
-    pub server: RTServer,
-    pub shared: RTShared,
-    pub run:    RTAsyncMutRefFn<Riptide, ()>
+    pub server: Arc<RTServer>,
+    pub run:    RTAsyncRefFn<Riptide, ()>
 }
 
 impl Riptide {
     pub fn new() -> Self {
         Self {
-            client: RTClient::default(),
-            server: RTServer::default(),
-            shared: RTShared::default(),
+            server: Arc::new(RTServer::default()),
             run:    run_impl
         }
     }
@@ -27,17 +22,19 @@ impl Default for Riptide {
 }
 
 pub fn run_impl<'a>(
-    riptide: &'a mut Riptide
+    riptide: &'a Riptide
 ) -> Pin<Box<dyn Future<Output = RTResult<()>> + Send + 'a>> {
     Box::pin(async move {
         println!("Running riptide");
-        (riptide.server.run)(&mut riptide.server).await
+        (riptide.server.run)(riptide.server.clone()).await
     })
 }
 
 impl Drop for Riptide {
     fn drop(&mut self) {
-        let _ = fs::remove_file(&self.server.listener.lock_path);
+        if let Some(lock_path) = self.server.listener.lock_path.get() {
+            let _ = fs::remove_file(lock_path);
+        }
         println!("Dropped lock file for current server");
     }
 }
