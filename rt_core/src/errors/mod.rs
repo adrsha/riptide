@@ -93,3 +93,9 @@ pub enum RTErrors {
     #[error("internal error: {message}")]
     Internal { message: String }
 }
+
+impl RTErrors {
+    pub fn log(&self) {
+        eprintln!("{}: {}", module_path!(), self)
+    }
+}

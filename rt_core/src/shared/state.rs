@@ -1,9 +1,9 @@
-use crate::shared::{buffers::RTBufferId, clusters::RTClusterId, frames::RTFrameId};
+use crate::shared::{clusters::RTClusterId, frames::RTFrameId, processes::RTProcessId};
 
 pub struct RTState {
     pub active_frame_id:   Option<RTFrameId>,
     pub active_cluster_id: Option<RTClusterId>,
-    pub active_buffer_id:  Option<RTBufferId>
+    pub active_process_id: Option<RTProcessId>
 }
 
 impl RTState {
@@ -11,7 +11,7 @@ impl RTState {
         Self {
             active_frame_id:   None,
             active_cluster_id: None,
-            active_buffer_id:  None
+            active_process_id: None
         }
     }
 }

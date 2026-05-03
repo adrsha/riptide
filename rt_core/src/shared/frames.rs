@@ -1,7 +1,8 @@
-use crate::shared::buffers::RTBufferId;
+use crate::shared::processes::RTProcessId;
 
 pub type RTFrameId = slotmap::DefaultKey;
 
+#[derive(Default)]
 pub struct RTFrame {
-    pub buffer_id: RTBufferId
+    pub process_id: RTProcessId
 }
