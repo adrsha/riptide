@@ -6,6 +6,8 @@ edition = "2024"
 [dependencies]
 dirs.workspace = true
 tokio.workspace = true
+parking_lot.workspace = true
+slotmap.workspace = true
 thiserror.workspace = true
 bitcode.workspace = true
 rt_core = { version = "0.1.0", path = "../rt_core" }

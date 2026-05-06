@@ -2,7 +2,6 @@ use std::{path::PathBuf, pin::Pin, sync::Arc};
 
 use rt_core::{
     errors::{RTErrors, RTResult},
-    shared::clusters::RTCluster,
     types::messages::{RTClusterCommand, RTCommand, RTSignal}
 };
 use tokio::{
@@ -13,7 +12,8 @@ use tokio::{
 
 use crate::{
     RTServer,
-    listener::def_fns::{create_lock_dir, shutdown_signals}
+    listener::def_fns::{create_lock_dir, shutdown_signals},
+    shared::clusters::RTCluster
 };
 
 pub fn tcp_listen_impl<'a>(

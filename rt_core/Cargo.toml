@@ -6,6 +6,6 @@ edition = "2024"
 [dependencies]
 arc-swap.workspace = true
 thiserror.workspace = true
-parking_lot.workspace = true
-slotmap.workspace = true
 bitcode.workspace = true
+libc = "0.2.186"
+memmap2 = "0.9.10"

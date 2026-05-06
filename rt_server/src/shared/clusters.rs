@@ -1,7 +1,6 @@
-use crate::{
-    shared::frames::RTFrameId,
-    types::misc::{RTDirection, RTPosition, RTSize}
-};
+use rt_core::types::misc::{RTDirection, RTPosition, RTSize};
+
+use crate::shared::frames::RTFrameId;
 
 pub type RTClusterId = slotmap::DefaultKey;
 

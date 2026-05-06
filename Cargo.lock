@@ -182,9 +182,9 @@ dependencies = [
 
 [[package]]
 name = "libc"
-version = "0.2.184"
+version = "0.2.186"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "48f5d2a454e16a5ea0f4ced81bd44e4cfc7bd3a507b61887c99fd3538b28e4af"
+checksum = "68ab91017fe16c622486840e4c83c9a37afeff978bd239b5293d61ece587de66"
 
 [[package]]
 name = "libredox"
@@ -202,6 +202,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "224399e74b87b5f3557511d98dff8b14089b3dadafcab6bb93eab67d3aace965"
 dependencies = [
  "scopeguard",
+]
+
+[[package]]
+name = "memmap2"
+version = "0.9.10"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "714098028fe011992e1c3962653c96b2d578c4b4bce9036e15ff220319b1e0e3"
+dependencies = [
+ "libc",
 ]
 
 [[package]]
@@ -407,8 +416,8 @@ version = "0.1.0"
 dependencies = [
  "arc-swap",
  "bitcode",
- "parking_lot",
- "slotmap",
+ "libc",
+ "memmap2",
  "thiserror",
 ]
 
@@ -418,8 +427,10 @@ version = "0.1.0"
 dependencies = [
  "bitcode",
  "dirs",
+ "parking_lot",
  "rkyv",
  "rt_core",
+ "slotmap",
  "thiserror",
  "tokio",
 ]
