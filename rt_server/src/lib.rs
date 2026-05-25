@@ -5,13 +5,17 @@ pub mod shared;
 
 use std::fs;
 
-use rt_core::{shm::RTShm, types::fn_alias::RTAsyncArcFn};
+use parking_lot::Mutex;
+use rt_core::{
+    shm::{RTShmMut, layout::RTShmMain},
+    types::fn_alias::RTAsyncArcFn
+};
 
 use crate::{def_fns::run_impl, listener::RTListener, shared::RTShared};
 
 pub struct RTServer {
     pub shared:   RTShared,
-    pub shm:      RTShm,
+    pub shm:      Mutex<RTShmMut<RTShmMain>>,
     pub listener: RTListener,
     pub run:      RTAsyncArcFn<RTServer, ()>
 }
@@ -19,11 +23,11 @@ pub struct RTServer {
 impl Default for RTServer {
     fn default() -> Self {
         let shared = RTShared::new();
-        match RTShm::create() {
+        match RTShmMut::create(1) {
             Ok(shm_new) => {
                 Self {
                     shared,
-                    shm: shm_new,
+                    shm: Mutex::new(shm_new),
                     listener: RTListener::new(),
                     run: run_impl
                 }

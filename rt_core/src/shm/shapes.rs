@@ -50,16 +50,3 @@ pub struct RTCircle {
 }
 
 const _: () = assert!(std::mem::size_of::<RTShape>() == 32);
-
-#[repr(C)]
-#[derive(Clone, Copy, Debug)]
-pub struct RTPixelBuffer {
-    pub shm_name: [u8; 32], // "/riptide_pb_<key>\0..." null-terminated
-    pub x:        i32,
-    pub y:        i32,
-    pub w:        i32,
-    pub h:        i32,
-    pub _pad:     [u8; 16]
-}
-
-const _: () = assert!(std::mem::size_of::<RTPixelBuffer>() == 64);
